@@ -353,7 +353,7 @@ body{font-family:"Source Sans 3",sans-serif;background:#fff;color:var(--black);l
 
 
 <script>
-var ADMIN_PW='stonebridge2025';
+var ADMIN_PW='Stonebridge888';
 var isAdmin=false;
 var currentCat='all';
 var newImgData=null;
@@ -430,15 +430,17 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeInquiry
 
 
 function tryLogin(){
-  if(document.getElementById('pwInput').value===ADMIN_PW){
+  var entered = document.getElementById('pwInput').value.trim();
+  if(entered === ADMIN_PW){
     isAdmin=true;
     document.getElementById('lockScreen').style.display='none';
     document.getElementById('adminBar').style.display='flex';
     document.body.classList.add('admin-active');
     renderCards();
   }else{
-    document.getElementById('lockErr').textContent='密码错误，请重试';
+    document.getElementById('lockErr').textContent='密码错误：' + entered + ' 不正确，请重试';
     document.getElementById('pwInput').value='';
+    document.getElementById('pwInput').focus();
   }
 }
 function viewPublic(){document.getElementById('lockScreen').style.display='none';renderCards();}
